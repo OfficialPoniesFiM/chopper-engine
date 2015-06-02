@@ -20,18 +20,20 @@ import sys # Imports a lot of things for use in our engine.
 import time # Imports time modules for us to use.
 import easygui # Allows us to do dialog boxes and other things.
 
+def gameExit(sleep):
+  if sleep == True:
+    time.sleep(10)
+  pygame.quit()
+  sys.exit()
+
 if pygame.display.Info().hw == False: # Stops anyone with hardware with no hardware acceleration to run the game within this engine.
   print "Your hardware is not supported. Your hardware must support hardware acceleration to run this game."
   easygui.msgbox("Chopper Engine couldn't find any way of hardware acceleration for this game! Your hardware/driver must support hardware acceleration to run this game. This problem can be solved by getting a better video card driver. Otherwise, get hardware that will work.", "Hardware/driver not supported")
-  time.sleep(10)
-  pygame.quit()
-  sys.exit()
+  gameExit(True)
 
 videoMemory = pygame.display.Info().video_mem # Variable for how much video memory is in the system.
 fullScreenWidth, fullScreenHeight = pygame.display.Info().current_w, pygame.display.Info().current_h # Variable for how big the desktop is for fullscreen.
 if fullScreenWdith == -1 or fullScreenHeight == -1: #Stops engine if pygame.display.Info() return -1 for desktop size.
   print "The game is having a problem with fullscreen. Error or SDL problem?"
   easygui.msgbox("The game is having a problem with fullscreen. Error or SDL problem?", "Fullscreen error")
-  time.sleep(10)
-  pygame.quit()
-  sys.exit()
+  gameExit(True)
