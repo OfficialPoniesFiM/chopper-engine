@@ -27,9 +27,9 @@ if pygame.display.Info().hw == False: # Stops anyone with hardware with no hardw
   pygame.quit()
   sys.exit()
 
-videoMemory = pygame.display.Info().video_mem
-fullScreenWidth, fullScreenHeight = pygame.display.Info().current_w, pygame.display.Info().current_h
-if fullScreenWdith == -1 or fullScreenHeight == -1:
+videoMemory = pygame.display.Info().video_mem # Variable for how much video memory is in the system.
+fullScreenWidth, fullScreenHeight = pygame.display.Info().current_w, pygame.display.Info().current_h # Variable for how big the desktop is for fullscreen.
+if fullScreenWdith == -1 or fullScreenHeight == -1: #Stops engine if pygame.display.Info() return -1 for desktop size.
   print "The game is having a problem with fullscreen. Error or SDL problem?"
   easygui.msgbox("The game is having a problem with fullscreen. Error or SDL problem?", "Fullscreen error")
   time.sleep(10)
