@@ -19,8 +19,9 @@ import pygame # Imports a big load of load of things 2D for use in our engine.
 import sys # Imports a lot of things for use in our engine.
 import time # Imports time modules for us to use.
 import easygui # Allows us to do dialog boxes and other things.
+safeModeDisplay = False
 
-def gameExit(sleep):
+def gameExit(sleep): # A function that exits the game. It also allows the program to wait a bit if the argument is True.
   if sleep == True:
     time.sleep(10)
   pygame.quit()
@@ -33,7 +34,11 @@ if pygame.display.Info().hw == False: # Stops anyone with hardware with no hardw
 
 videoMemory = pygame.display.Info().video_mem # Variable for how much video memory is in the system.
 fullScreenWidth, fullScreenHeight = pygame.display.Info().current_w, pygame.display.Info().current_h # Variable for how big the desktop is for fullscreen.
-if fullScreenWdith == -1 or fullScreenHeight == -1: #Stops engine if pygame.display.Info() return -1 for desktop size.
+if fullScreenWidth == -1 or fullScreenHeight == -1: #Stops engine if pygame.display.Info() return -1 for desktop size.
   print "The game is having a problem with fullscreen. Error or SDL problem?"
   easygui.msgbox("The game is having a problem with fullscreen. Error or SDL problem?", "Fullscreen error")
   gameExit(True)
+
+vramUsage = fullScreenWidth * fullScreenHeight * pygame.display.Info().bytesize # We calculate how much VRAM we use from the number of all pixels * how much bytes each pixel takes.
+if vramUsage > videoMemory:
+  safeModeDisplay = True # We set safe mode for the display to true, and this will turn down the resolution to 800x600 or lower.
