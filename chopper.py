@@ -18,4 +18,8 @@
 import pygame # Imports a big load of load of things 2D for use in our engine.
 import sys # Imports a lot of things for use in our engine.
 import time # Imports time modules for us to use.
+import ctypes # Allows us to do dialog boxes and other things.
 
+if pygame.display.Info().hw == False: # Stops anyone with hardware with no hardware acceleration to run the game within this engine.
+  print "Your hardware is not supported. Your hardware must support hardware acceleration to run this game."
+  easygui.msgbox("Chopper Engine couldn't find any way of hardware acceleration for this game! Your hardware/driver must support hardware acceleration to run this game. This problem can be solved by getting a better video card driver. Otherwise, get hardware that will work.", "Hardware/driver not supported")
