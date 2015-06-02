@@ -1,19 +1,20 @@
 # Chopper Engine, an engine written in Python for games.
-# Copyright (C) 2015, Nathan Guerrero under Chopper Games/Studios
+# Copyright (C) 2015, Nathan Guerrero under Chopper Studios
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
+# This file is part of Chopper Engine.
 #
-# This program is distributed in the hope that it will be useful,
+# Chopper Engine is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Chopper Engine is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# GNU Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public License
+# along with Chopper Engine.  If not, see <http://www.gnu.org/licenses/>.
 
 import pygame # Imports a big load of load of things 2D for use in our engine.
 import sys # Imports a lot of things for use in our engine.
