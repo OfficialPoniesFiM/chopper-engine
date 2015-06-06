@@ -20,6 +20,7 @@ import pygame # Imports a big load of load of things 2D for use in our engine.
 import sys # Imports a lot of things for use in our engine.
 import time # Imports time modules for us to use.
 import easygui # Allows us to do dialog boxes and other things.
+runall = True
 safeModeDisplay = False # A variable that will be checked to see if safe mode is enabled.
 
 def gameExit(sleep): # A function that exits the game. It also allows the program to wait a bit if the argument is True.
@@ -49,3 +50,10 @@ if configFile.readLine(1) != "# NORESET":
   noConfig == True
 else:
   noConfig == False
+
+import basegame
+
+oneTime() # Does initial things for game (loading, processing, terrain generation, etc)
+
+while runall == true:
+  gameLoop() # Runs game loop from basegame file.
