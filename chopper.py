@@ -20,8 +20,11 @@ import pygame # Imports a big load of load of things 2D for use in our engine.
 import sys # Imports a lot of things for use in our engine.
 import time # Imports time modules for us to use.
 import easygui # Allows us to do dialog boxes and other things.
+import psutil # Allows us to see how much (logical) CPUs are available for the engine to use.
 runall = True
 safeModeDisplay = False # A variable that will be checked to see if safe mode is enabled.
+
+coresAvailable = psutil.cpu_count()
 
 def gameExit(sleep): # A function that exits the game. It also allows the program to wait a bit if the argument is True.
   if sleep == True:
@@ -46,10 +49,28 @@ if vramUsage > videoMemory:
   safeModeDisplay = True # We set safe mode for the display to true, and this will turn down the resolution to 800x600 or lower.
 
 configFile = open("config.yaml", "w+")
-if configFile.readLine(1) != "# NORESET":
+if configFile.readLine(1) != "# NORESET\n":
   noConfig == True
+  configFile.write("# NORESET\n")
+  configFile.write("multicore: True\n")
+  multiprocessing = True
+  if safeModeDisplay == True:
+    configFile.write("fullscreen == False\n")
+    configFile.write("resolution: 800x600\n")
+  else:
+    configFile.write("fullscreen == True\n")
+    configFile.write("resolution: " + str(fullScreenWidth) + "x" + str(fullScreenHeight) + "\n")
 else:
-  noConfig == False
+  noConfig = False
+  rawYaml = configFile.read()
+  gameConfig == yaml.load(rawYaml)
+
+if noConfig == True:
+  multiCoreOn == True
+elif multiprocessing == True:
+  multiCoreOn == True
+else:
+  multiCoreOn == False
 
 import basegame
 
