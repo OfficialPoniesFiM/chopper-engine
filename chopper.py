@@ -49,30 +49,29 @@ if vramUsage > videoMemory:
   safeModeDisplay = True # We set safe mode for the display to true, and this will turn down the resolution to 800x600 or lower.
 
 configFile = open("config.yaml", "w+")
-if configFile.readLine(1) != "# NORESET\n":
-  noConfig == True
-  configFile.write("# NORESET\n")
-  configFile.write("multicore: True\n")
-  multiprocessing = True
-  if safeModeDisplay == True:
+if configFile.readLine(1) != "# NORESET\n": # Checks if config file doesn't exist, or was set to reset by the user.
+  noConfig == True # If it is, the noConfig variable is on, and the game will act as if it was its first launch.
+  configFile.write("# NORESET\n") # We put the noreset thing to this so it won't act again, until config removed or set to reset by the user.
+  configFile.write("multicore: True\n") # We get multicore support on in the config, if it works.
+  multiprocessing = True # We set the multicore variable to True, so this will work if we have more than 1 logical CPU.
+  if safeModeDisplay == True: # If there's not enough VRAM in the GPU, we will put in no fullscreen and 800x600 in the config.
     configFile.write("fullscreen == False\n")
     configFile.write("resolution: 800x600\n")
-  else:
+  else: # Otherwise, we turn on fullscreen, and set the resolution to the size of the monitor available to the engine.
     configFile.write("fullscreen == True\n")
     configFile.write("resolution: " + str(fullScreenWidth) + "x" + str(fullScreenHeight) + "\n")
-else:
-  noConfig = False
-  rawYaml = configFile.read()
-  gameConfig == yaml.load(rawYaml)
+else: # If there is a working config:
+  noConfig = False # We set the noConfig variable to false, so the game acts as it isn't its first launch.
+  gameConfig == yaml.load(configFile.read()) # We get the yaml module to load the yaml from the config file, and turn it into something python is able to read.
 
-if noConfig == True:
-  multiCoreOn == True
-elif multiprocessing == True:
-  multiCoreOn == True
-else:
-  multiCoreOn == False
+if noConfig == True: # If the noConfig thing is true:
+  multiCoreOn == True # We turn on multiprocessing.
+elif multiprocessing == True: # If the noConfig thing is false, but multiprocessing is turned on:
+  multiCoreOn == True # We turn on multiprocessing.
+else: # If both conditions aren't true:
+  multiCoreOn == False # We don't turn on multiprocessing, and everything is done on one single thread.
 
-import basegame
+import basegame # We import the basegame file, which contains the base code for the entire game.
 
 oneTime() # Does initial things for game (loading, processing, terrain generation, etc)
 
