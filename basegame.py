@@ -6,6 +6,9 @@ if __name__ == "__main__":
   raw_input("Press return/enter to continue. ")
   sys.exit()
 
+def render():
+  pygame.flip() # Puts the frame onto the window/display.
+
 def oneTime(): # Use this for loading, terrain generation, processing, etc)
   print "Loading game..."
 
