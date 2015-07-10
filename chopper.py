@@ -55,11 +55,19 @@ if configFile.readLine(1) != "# NORESET\n": # Checks if config file doesn't exis
   configFile.write("multicore: True\n") # We get multicore support on in the config, if it works.
   multiprocessing = True # We set the multicore variable to True, so this will work if we have more than 1 logical CPU.
   if safeModeDisplay == True: # If there's not enough VRAM in the GPU, we will put in no fullscreen and 800x600 in the config.
-    configFile.write("fullscreen == False\n")
+    configFile.write("fullscreen: False\n")
     configFile.write("resolution: 800x600\n")
   else: # Otherwise, we turn on fullscreen, and set the resolution to the size of the monitor available to the engine.
-    configFile.write("fullscreen == True\n")
+    configFile.write("fullscreen: True\n")
     configFile.write("resolution: " + str(fullScreenWidth) + "x" + str(fullScreenHeight) + "\n")
+  configFile.write("bgvolume: 100\n")
+  configFile.write("sfxvolume: 100\n")
+  configFile.write("fontantialiasing: True\n")
+  configFile.write("vectorlod: True\n")
+  configFile.write("accuratecollisiondetection: True\n")
+  configFile.write("brightness: 100\n")
+  configFile.write("mousesmoothing: True\n")
+  
 else: # If there is a working config:
   noConfig = False # We set the noConfig variable to false, so the game acts as it isn't its first launch.
   gameConfig == yaml.load(configFile.read()) # We get the yaml module to load the yaml from the config file, and turn it into something python is able to read.
